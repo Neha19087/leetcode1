@@ -1,4 +1,6 @@
 // intersection of two sorted arrays using two pointer logic
+// brute code for given question will be if iterate any one array and iterate 
+// array by each element to find if guven element is there or not 
 #include <bits/stdc++.h>
 using namespace std;
 vector<int> intersectionArray(vector<int>& nums1, vector<int>& nums2){
@@ -17,6 +19,31 @@ vector<int> intersectionArray(vector<int>& nums1, vector<int>& nums2){
             i++;
         }
         else {
+            j++;
+        }
+    }
+    return intersectionarr;
+    
+}
+// use this code instead if you want duplicate elements also
+
+vector<int> intersectionArray(vector<int>& nums1, vector<int>& nums2){
+    int n=nums1.size();
+    int m= nums2.size();
+    vector<int>intersectionarr;
+    int i=0;
+    int j=0;
+    while(i<n && j<m){
+        if (nums1[i]< nums2[j]){
+            i++;
+        }
+        else if(nums1[i]>nums2[j]) {
+            j++;
+        }
+        
+        else{
+            intersectionarr.push_back(nums1[i]);
+            i++;
             j++;
         }
     }
