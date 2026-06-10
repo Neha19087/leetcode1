@@ -82,3 +82,66 @@ public:
         }      
     }
 };
+
+// we have to rotate the matrix by 90 degree 
+//Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+//Output: [[7,4,1],[8,5,2],[9,6,3]]
+// brute method will be to observe the swaps and notice where each element is going
+// but this method uses an extra space of matrix
+// [i][j]--> [j][n-1-i]
+// to do it in constant place we can first take its transpose and then reverse each row to get
+// the desired rotation without using extra space
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        for(int i=0; i<n-1;i++){
+            for (int j=i+1;j<n;j++){   // only above the diagonal elements are swapped
+                swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        for (int i=0;i<n;i++){
+            for (int j=0;j<n/2;j++){
+                swap(matrix[i][j], matrix[i][n-1-j]);
+            }
+        }   
+    }
+};
+
+// we have to print the mattrix in a spiral manner
+// it can only be done using one approach but we have to make sure to consider edge cases
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int n= matrix.size();
+        int m= matrix[0].size();
+        vector<int>arr;
+        int top=0;
+        int left=0;
+        int right= m-1;
+        int bottom= n-1;
+        while(top<=bottom && left<=right){
+            for(int i=left;i<=right;i++){
+                arr.push_back(matrix[top][i]);
+            }
+            top++;
+            for (int i=top;i<=bottom;i++){
+                arr.push_back(matrix[i][right]);
+            } 
+            right--;
+            if (top<=bottom){
+                for(int i=right;i>=left;i--){
+                    arr.push_back(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+            if(left<=right){
+                for(int i=bottom;i>=top;i--){
+                    arr.push_back(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+        return arr;
+    }
+};
