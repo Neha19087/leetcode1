@@ -78,3 +78,45 @@ int main() {
 }
 
 
+// to get intersection of two unsorted array we can store the elements of one array in a hashmap and then compare directly
+// this code returns elements in intersection array only once even if they appear multiple times in both arrays
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        int n= nums1.size();
+        int m= nums2.size();
+        vector<int>arr;
+        unordered_map<int,int>mpp;
+        for(int i=0;i<n;i++){
+            mpp[nums1[i]]++;
+        }
+        for(int i=0;i<m;i++){
+            if (mpp.find(nums2[i])!=mpp.end() && mpp[nums2[i]]>0){
+                arr.push_back(nums2[i]);
+                mpp[nums2[i]]=-1;
+            }
+        }
+        return arr;
+    }
+};
+
+// this slight modification will allow intersection array to contain duplicate elements
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        int n= nums1.size();
+        int m= nums2.size();
+        vector<int>arr;
+        unordered_map<int,int>mpp;
+        for(int i=0;i<n;i++){
+            mpp[nums1[i]]++;
+        }
+        for(int i=0;i<m;i++){
+            if (mpp.find(nums2[i])!=mpp.end() && mpp[nums2[i]]>0){
+                arr.push_back(nums2[i]);
+                mpp[nums2[i]]--;
+            }
+        }
+        return arr;
+    }
+};
