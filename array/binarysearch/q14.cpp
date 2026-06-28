@@ -19,3 +19,5 @@ public:
         return s;
     }
 };
+//we iterate through every word in the list and check if they have that letter common
+// we stop the moment any letter differs from other words
