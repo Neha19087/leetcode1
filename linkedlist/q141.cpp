@@ -24,3 +24,5 @@ public:
         return true;
     }
 };
+// we can also use a map to store each node and if its visited 
+// thus giving us the loop
