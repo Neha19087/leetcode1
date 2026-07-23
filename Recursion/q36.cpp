@@ -1,3 +1,4 @@
+//check if a sudoku is valid or not
 class Solution {
 public:
     bool check(vector<vector<char>>& board,int row,int col){
